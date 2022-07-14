@@ -68,7 +68,8 @@ export default function App() {
                 prefixes: ["sellIt://", "http://sellIt.com"],
               }}
             >
-              {user ? <AppNavigator /> : <AuthNavigator />}
+              {/* {user ? <AppNavigator /> : <AuthNavigator />} */}
+              {user ? <AuthNavigator /> : <AppNavigator /> }
             </NavigationContainer>
           </ToastProvider>
         </PaperProvider>
