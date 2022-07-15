@@ -57,6 +57,7 @@ function RegisterScreen({ navigation }) {
   const [error, setError] = useState();
 
   const handleSubmit = async (userInfo) => {
+    console.log(userInfo);
     await registerApi.request(userInfo);
     if (registerApi.error) return;
 

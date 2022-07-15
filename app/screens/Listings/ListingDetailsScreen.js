@@ -70,7 +70,7 @@ function ListingDetailsScreen({ route, navigation }) {
       FileSystem.documentDirectory + "listing.jpg"
     );
     const asset = await MediaLibrary.createAssetAsync(uri);
-    await MediaLibrary.createAlbumAsync("SellIt", asset, false);
+    await MediaLibrary.createAlbumAsync("WeekEnd", asset, false);
     console.log(asset);
     const fileBase64 = await FileSystem.readAsStringAsync(uri, {
       encoding: "base64",

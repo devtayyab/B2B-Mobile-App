@@ -28,8 +28,10 @@ function LoginScreen({ navigation }) {
   const { t } = useTranslation();
 
   const handleSubmit = async ({ email, password }) => {
+    console.log(email, password);
     setLoading(true);
     const result = await authApi.login(email, password);
+    // console.log(result);
     setLoading(false);
     if (!result.ok) return setLoginFailed(true);
     setLoginFailed(false);

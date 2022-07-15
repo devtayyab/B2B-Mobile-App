@@ -65,11 +65,11 @@ export default function App() {
                     listingDetail: "listings/:id",
                   },
                 },
-                prefixes: ["sellIt://", "http://sellIt.com"],
+                prefixes: ["weekend://", "http://weekend.com"],
               }}
             >
-              {/* {user ? <AppNavigator /> : <AuthNavigator />} */}
-              {user ? <AuthNavigator /> : <AppNavigator /> }
+              {user ? <AppNavigator /> : <AuthNavigator />}
+              {/* {user ? <AuthNavigator /> : <AppNavigator /> } */}
             </NavigationContainer>
           </ToastProvider>
         </PaperProvider>

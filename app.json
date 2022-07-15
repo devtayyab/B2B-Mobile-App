@@ -1,8 +1,8 @@
 {
   "expo": {
     "scheme":"myapp",
-    "name": "SellIt",
-    "slug": "SellIt",
+    "name": "WeekEnd",
+    "slug": "WeekEnd",
     "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -18,11 +18,11 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.codewithmosh.sellIt",
+      "bundleIdentifier": "com.codewithtayyab.weekEnd",
       "buildNumber": "1.0.0"
     },
     "android": {
-      "package": "com.codewithmosh.sellIt",
+      "package": "com.codewithtayyab.weekEnd",
       "versionCode": 1
     },
     "description": "A marketplace for selling the stuff you don't need anymore.",
