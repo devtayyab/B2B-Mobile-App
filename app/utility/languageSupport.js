@@ -30,7 +30,7 @@ const init = () => {
             dark: "Dark",
             average_title: "Daily Average",
             average_description:
-              "Average time you spent per day using the SellIt app on this device in the last week",
+              "Average time you spent per day using the WeekEnd app on this device in the last week",
             m: "m",
             h: "h",
             save: "Save",
@@ -78,9 +78,9 @@ const init = () => {
             add_contact: "Add to contacts",
             background: "Background",
             report: "Report",
-            reportTitle: "Do report to SellIt on this contact?",
+            reportTitle: "Do report to WeekEnd on this contact?",
             reportSubTitle:
-              "the recent message from this contact will move to SellIt for checking...",
+              "the recent message from this contact will move to WeekEnd for checking...",
             block: "Block this contact and remove this chat",
             messageDemo1: "Swipe to display more backgrounds",
             messageDemo2: "Set background to see more options",
@@ -161,9 +161,9 @@ const init = () => {
             add_contact: "הוסף לאנשי קשר",
             background: "רקע",
             report: "דווח",
-            reportTitle: "האם לדווח ל-SellIt על איש קשר זה?",
+            reportTitle: "האם לדווח ל-WeekEnd על איש קשר זה?",
             reportSubTitle:
-              "ההודעות האחרונות ממשתמש זה יוברו ל-SellIt לבדיקה? ",
+              "ההודעות האחרונות ממשתמש זה יוברו ל-WeekEnd לבדיקה? ",
             block: "חסום/חסמי איש קשר ומחק/י את הודעות צא'ט זה",
             messageDemo1: "החלק/י כדי להציג רקעים נוספים",
             messageDemo2: "הגדר/י רקע כדי לראות אפשרויות נוספות",
