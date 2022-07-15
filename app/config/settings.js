@@ -2,7 +2,7 @@ const cacheKeys = { CartCacheKey: "MyCart", ChatBackground: "ChatBackground" };
 
 const settings = {
   dev: {
-    apiUrl: "http://192.168.68.101:9000/api",
+    apiUrl: "http://localhost:9000/api",
     ...cacheKeys,
   },
   production: {

@@ -31,7 +31,7 @@ function LoginScreen({ navigation }) {
     console.log(email, password);
     setLoading(true);
     const result = await authApi.login(email, password);
-    // console.log(result);
+    console.log(result.data);
     setLoading(false);
     if (!result.ok) return setLoginFailed(true);
     setLoginFailed(false);
