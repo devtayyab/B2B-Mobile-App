@@ -3,11 +3,12 @@ const cacheKeys = { CartCacheKey: "MyCart", ChatBackground: "ChatBackground" };
 const settings = {
   dev: {
     // apiUrl: "http://localhost:9000/api",
-    apiUrl: "http://192.168.0.113:9000/api",
+    // apiUrl: "http://192.168.0.113:9000/api",
+    apiUrl: "https://b2bserver.herokuapp.com/api",
     ...cacheKeys,
   },
   production: {
-    apiUrl: "https://yad2-backend.herokuapp.com/api/",
+    apiUrl: "https://b2bserver.herokuapp.com/api",
     ...cacheKeys,
   },
 };
