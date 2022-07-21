@@ -54,6 +54,7 @@
     "react-i18next": "^11.7.2",
     "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.2.tar.gz",
     "react-native-confirmation-code-field": "^6.5.1",
+    "react-native-dropdown-picker": "^5.4.2",
     "react-native-expo-image-cache": "^4.1.0",
     "react-native-gesture-handler": "~1.6.0",
     "react-native-highlight-words": "^1.0.1",
