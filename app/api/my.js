@@ -9,7 +9,8 @@ const getBackgrounds = () => {
   const darkCount = 12;
   const lightImages = [];
   const darkImages = [];
-  const serverUri = "http://192.168.68.112:9000";
+  // const serverUri = "http://192.168.68.112:9000";
+  const serverUri = "https://b2bserver.herokuapp.com";
   for (let i = 1; i <= lightCount; i++)
     lightImages.push(`${serverUri}/assets/light/${i}.jpg`);
   for (let i = 1; i <= darkCount; i++)

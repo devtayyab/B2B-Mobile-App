@@ -30,7 +30,7 @@ function ChatsListScreen({ navigation }) {
     const token = await storage.getToken();
     setUser(jwtDecode(token));
     //todo: move http://192.168.68.112:9000 to settings
-    const clientSocket = io("http://192.168.68.112:9000", {
+    const clientSocket = io("https://b2bserver.herokuapp.com", {
       auth: { token: token },
     });
     clientSocket.on("ExistingMessages", (chats) => {
@@ -101,7 +101,7 @@ function ChatsListScreen({ navigation }) {
             backgroundColor={colors.boldLight}
           />
         </View>
-        {!loading && chatsList.length === 0 && <Text>No chats to diaply</Text>}
+        {!loading && chatsList.length === 0 && <Text>No chats to display</Text>}
 
         <FlatList
           data={chatsList}
