@@ -164,7 +164,7 @@ function ListingsScreen({ navigation }) {
             showsHorizontalScrollIndicator={false}
           />
         </View>
-        <View style={{ padding: 20 }}>
+        <View style={{ padding: 20, paddingBottom: 120 }}>
           {error && (
             <>
               <AppText>Couldn't retrieve the listings.</AppText>

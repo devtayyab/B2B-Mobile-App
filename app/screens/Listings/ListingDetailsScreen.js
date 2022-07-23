@@ -35,7 +35,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as MediaLibrary from "expo-media-library";
 
 const validationSchema = Yup.object().shape({
-  message: Yup.string().required().label("Contatct Message"),
+  message: Yup.string().required().label("Contact Message"),
 });
 
 function ListingDetailsScreen({ route, navigation }) {
@@ -62,6 +62,7 @@ function ListingDetailsScreen({ route, navigation }) {
         color: colors.secondary,
       },
     });
+    console.log(messageApi.error);
   };
   const onShare = async () => {
     // let redirectUrl = Linking.makeUrl("listings/listingsDetails/", listing);
@@ -100,83 +101,82 @@ function ListingDetailsScreen({ route, navigation }) {
       <ActivityIndicator visible={messageApi.loading || getSallerApi.loading} />
       {!getSallerApi.loading && (
         <KeyboardAvoidingView
-          behavior="position"
-          keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100}
+        behavior="position"
+        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100}
         >
-          <ScrollView>
-            <ImageListScroll
-              images={listing.images}
-              onDoubleTap={(image) =>
-                navigation.navigate(routes.LISTING_IMAGE, {
-                  imageUri: image.url,
-                })
-              }
-            />
+          
+          <ImageListScroll
+            images={listing.images}
+            onDoubleTap={(image) =>
+              navigation.navigate(routes.LISTING_IMAGE, {
+                imageUri: image.url,
+              })
+            }
+          />
 
-            <View style={styles.detailsContainer}>
-              <Text style={styles.title}>{listing.title}</Text>
-              <View style={{ flexDirection: "row" }}>
-                <View style={{ flex: 1 }}>
-                  <Text style={[styles.price, { color: colors.secondary }]}>
-                    ${listing.price}
-                  </Text>
-                </View>
-                <View>
-                  <TouchableOpacity onPress={onShare}>
-                    <MaterialCommunityIcons
-                      name="share-variant"
-                      size={27}
-                      color={colors.medium}
-                    />
-                  </TouchableOpacity>
-                </View>
+          <View style={styles.detailsContainer}>
+            <Text style={styles.title}>{listing.title}</Text>
+            <View style={{ flexDirection: "row" }}>
+              <View style={{ flex: 1 }}>
+                <Text style={[styles.price, { color: colors.secondary }]}>
+                  ${listing.price}
+                </Text>
               </View>
-              <View style={styles.userContainer}>
-                <ListItem
-                  image={
-                    getSallerApi.data.profile_image
-                      ? getSallerApi.data.profile_image.url
-                      : null
-                  }
-                  title={getSallerApi.data.name}
-                  subTitle={`${getSallerApi.data.listings} Listing`}
-                  onPress={() =>
-                    Linking.openURL(`tel:${getSallerApi.data.phone_number}`)
-                  }
-                  iconName="phone"
-                  padding={0}
-                />
+              <View>
+                <TouchableOpacity onPress={onShare}>
+                  <MaterialCommunityIcons
+                    name="share-variant"
+                    size={27}
+                    color={colors.medium}
+                  />
+                </TouchableOpacity>
               </View>
             </View>
-            <Form
-              initialValues={{ message: "" }}
-              onSubmit={sendMessage}
-              validationSchema={validationSchema}
-            >
-              <FormField placeholder="Message..." name="message" />
-              <SubmitButton title="CONTACT SELLER" />
-              <ErrorMessage
-                error="Error sending the message..."
-                visible={messageApi.error}
+            <View style={styles.userContainer}>
+              <ListItem
+                image={
+                  getSallerApi.data.profile_image
+                    ? getSallerApi.data.profile_image.url
+                    : null
+                }
+                title={getSallerApi.data.name}
+                subTitle={`${getSallerApi.data.listings} Listing`}
+                onPress={() =>
+                  Linking.openURL(`tel:${getSallerApi.data.phone_number}`)
+                }
+                iconName="phone"
+                padding={0}
               />
-            </Form>
-            {listing.location && (
-              <MapView
-                style={styles.map}
-                initialRegion={{
-                  ...listing.location,
-                  latitudeDelta: 0.3,
-                  longitudeDelta: 0.3,
-                }}
-              >
-                <MapView.Marker
-                  coordinate={listing.location}
-                  title="Saler Location"
-                  description={"See if the location is'nt too far..."}
-                />
-              </MapView>
-            )}
-          </ScrollView>
+            </View>
+          </View>
+          <Form
+            initialValues={{ message: "" }}
+            onSubmit={sendMessage}
+            validationSchema={validationSchema}
+          >
+            <FormField placeholder="Message..." name="message" />
+            <SubmitButton title="CONTACT SELLER" />
+            <ErrorMessage
+              error="Error sending the message..."
+              visible={messageApi.error}
+            />
+          </Form>
+          {listing.location && (
+            <MapView
+              style={styles.map}
+              initialRegion={{
+                ...listing.location,
+                latitudeDelta: 0.3,
+                longitudeDelta: 0.3,
+              }}
+            >
+              <MapView.Marker
+                coordinate={listing.location}
+                title="Saler Location"
+                description={"See if the location is'nt too far..."}
+              />
+            </MapView>
+          )}
         </KeyboardAvoidingView>
       )}
     </>
@@ -187,6 +187,7 @@ const styles = StyleSheet.create({
   detailsContainer: {
     padding: 20,
   },
+
   price: {
     fontWeight: "bold",
     fontSize: 20,
@@ -203,7 +204,7 @@ const styles = StyleSheet.create({
     height: 200,
     width: "100%",
     marginTop: 20,
-    marginBottom: 15,
+    // marginBottom: 15,
   },
 });
 

@@ -28,6 +28,7 @@ function ChatsListScreen({ navigation }) {
   const initData = async () => {
     setLoading(true);
     const token = await storage.getToken();
+    console.log(jwtDecode(token));
     setUser(jwtDecode(token));
     //todo: move http://192.168.68.112:9000 to settings
     const clientSocket = io("https://b2bserver.herokuapp.com", {

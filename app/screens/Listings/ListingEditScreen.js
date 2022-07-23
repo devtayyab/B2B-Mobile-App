@@ -104,7 +104,6 @@ function ListingEditScreen({ route }) {
           progress={progress}
           visible={uploadVisible}
         />
-        {/* <ScrollView></ScrollView> */}
         <Form
           initialValues={{
             title: listing.title ? listing.title : "",
