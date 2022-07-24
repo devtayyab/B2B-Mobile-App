@@ -27,6 +27,7 @@ function MyCartScreen({ route, navigation }) {
       sum += details.quantity * details.price;
     return sum;
   };
+  
   const { cart } = route.params;
   const { colors } = useTheme();
   const { t } = useTranslation();

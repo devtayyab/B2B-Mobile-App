@@ -18,6 +18,7 @@ function MyActivityScreen(props) {
     setLabels(getWeekDays());
   }, []);
 
+
   const avg = getActivityApi.data.reduce((a, b) => a + b, 0);
   const dispaly_avg = { h: avg / 60 - (avg % 60), m: avg % 60 };
   return (

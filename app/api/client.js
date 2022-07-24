@@ -4,7 +4,9 @@ import authStorage from "../auth/storage";
 import setting from "../config/settings";
 
 const apiClient = create({
-  baseURL: "http://localhost:9000/api",
+  // baseURL: "http://localhost:9000/api",
+  // baseURL: "http://192.168.0.113:9000/api",
+  baseURL: "https://b2bserver.herokuapp.com/api",
 });
 
 apiClient.addAsyncRequestTransform(async (request) => {

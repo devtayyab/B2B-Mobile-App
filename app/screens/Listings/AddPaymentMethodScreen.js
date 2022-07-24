@@ -76,11 +76,11 @@ function AddPaymentMethodScreen({ navigation }) {
         <FormField
           cardNumber={true}
           TextInputComponent={RectTextInput}
-          label="Cart Number"
+          label="Card Number"
           keyboardType="numeric"
           maxLength={19}
           name="card_number"
-          placeholder="Cart Number"
+          placeholder="Card Number"
         />
         <FormField
           TextInputComponent={RectTextInput}

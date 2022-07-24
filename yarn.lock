@@ -10248,6 +10248,11 @@ react-native-confirmation-code-field@^6.5.1:
   resolved "https://registry.yarnpkg.com/react-native-confirmation-code-field/-/react-native-confirmation-code-field-6.7.0.tgz#81f5e646898addb3243cf89d41d884b0762ae962"
   integrity sha512-dzw1Wh0Lz4myVUSyj7E4u/s5y5Sz5jS4B5w+oRlaeDVnUHer+HQSIzr11ckNBGr+WVCdGIYwxrYcpZ+Dr8ELfA==
 
+react-native-dropdown-select-list@^1.0.18:
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/react-native-dropdown-select-list/-/react-native-dropdown-select-list-1.0.18.tgz#2e178d7659bda25a953f08ab3d2784b2b6d1bd00"
+  integrity sha512-GJBjyxjRw/MGMZAGlONziRkUPKPB5gO/4vBgf9fnsUxNI/ATo6fwfGw187GNSwe8LHjie87wAu6/35iwz6fOdA==
+
 react-native-expo-image-cache@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/react-native-expo-image-cache/-/react-native-expo-image-cache-4.1.0.tgz#649cbe9786249134d3eafed5baba50bbfa80c029"
