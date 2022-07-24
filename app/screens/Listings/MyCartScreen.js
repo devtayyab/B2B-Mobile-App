@@ -27,7 +27,7 @@ function MyCartScreen({ route, navigation }) {
       sum += details.quantity * details.price;
     return sum;
   };
-  
+
   const { cart } = route.params;
   const { colors } = useTheme();
   const { t } = useTranslation();
@@ -43,7 +43,7 @@ function MyCartScreen({ route, navigation }) {
       [
         {
           text: t("cancel"),
-          onPress: () => {},
+          onPress: () => { },
           style: "cancel",
         },
         {
@@ -65,9 +65,8 @@ function MyCartScreen({ route, navigation }) {
           <Text style={[styles.title, { color: colors["medium"] }]}>
             My Cart
           </Text>
-          <Text style={[styles.itemsNumber, { color: colors.medium }]}>{`${
-            Object.keys(editedCart).length
-          } items`}</Text>
+          <Text style={[styles.itemsNumber, { color: colors.medium }]}>{`${Object.keys(editedCart).length
+            } items`}</Text>
         </View>
         <TouchableWithoutFeedback onPress={handleResetCart}>
           <View style={styles.resetCartView}>
@@ -120,7 +119,7 @@ function MyCartScreen({ route, navigation }) {
         color="blue"
         borderRadius={15}
       />
-      <TouchableOpacity onPress={() => navigation.goBack()}>
+      <TouchableOpacity onPress={() => navigation.navigate('Listings')}>
         <Text style={[styles.goBack, { color: colors.medium }]}>
           {t("Countinue Shooping")}
         </Text>

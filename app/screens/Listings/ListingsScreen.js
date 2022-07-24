@@ -36,14 +36,14 @@ function ListingsScreen({ navigation }) {
   const setCachedCart = async () => {
     const cachedCart = await cache.get(settings.CartCacheKey, false);
     if (cachedCart) {
-      setCart(cachedCart);
+      // setCart(cachedCart);
       let size = 0;
       for (const [key, value] of Object.entries(cachedCart))
         size += value.quantity;
-      setCartSize(size);
+      // setCartSize(size);
     } else {
-      setCartSize(0);
-      setCart([]);
+      // setCartSize(0);
+      // setCart([]);
     }
   };
   const initListings = async () => {
@@ -181,11 +181,11 @@ function ListingsScreen({ navigation }) {
               <Card
                 title={item.title}
                 subTitle={"$" + item.price}
-                imageUrl={item.images[0].url}
+                imageUrl={item.images[0]?.url}
                 onPress={() =>
                   navigation.navigate(routes.LISTING_DETAILS, item)
                 }
-                thumbnailUrl={item.images[0].thumbnailUrl}
+                thumbnailUrl={item.images[0]?.thumbnailUrl}
                 OnAddToCart={async () => {
                   const key = item._id;
                   if (!cart[key]) cart[key] = { ...item, quantity: 0 };

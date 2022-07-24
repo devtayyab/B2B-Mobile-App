@@ -50,6 +50,7 @@ function ListingDetailsScreen({ route, navigation }) {
   }, []);
   const sendMessage = async ({ message }) => {
     Keyboard.dismiss();
+  
     messageApi.request({
       message,
       listingId: listing.id,
@@ -80,15 +81,12 @@ function ListingDetailsScreen({ route, navigation }) {
     // console.log(fileBase64);
     try {
       await Share.share({
-        message: `${
-          listing.images[0].url
-        } I am sharing with you listing called ${listing.title} in just ${
-          listing.price
-        }$!\n
+        message: `${listing.images[0].url
+          } I am sharing with you listing called ${listing.title} in just ${listing.price
+          }$!\n
         ${listing.description ? listing.description + "\n" : ""}
-        contact the seller ${getSallerApi.data.name} in phone ${
-          getSallerApi.data.phone_number
-        }`,
+        contact the seller ${getSallerApi.data.name} in phone ${getSallerApi.data.phone_number
+          }`,
         title: listing.title,
         url: `data:image/jpg;${fileBase64}`,
       });
@@ -101,10 +99,10 @@ function ListingDetailsScreen({ route, navigation }) {
       <ActivityIndicator visible={messageApi.loading || getSallerApi.loading} />
       {!getSallerApi.loading && (
         <KeyboardAvoidingView
-        behavior="position"
-        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100}
+          behavior="position"
+          keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100}
         >
-          
+
           <ImageListScroll
             images={listing.images}
             onDoubleTap={(image) =>
@@ -156,10 +154,10 @@ function ListingDetailsScreen({ route, navigation }) {
           >
             <FormField placeholder="Message..." name="message" />
             <SubmitButton title="CONTACT SELLER" />
-            <ErrorMessage
+            {/* <ErrorMessage
               error="Error sending the message..."
               visible={messageApi.error}
-            />
+            /> */}
           </Form>
           {listing.location && (
             <MapView

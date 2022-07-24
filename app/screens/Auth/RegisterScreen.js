@@ -68,8 +68,8 @@ function RegisterScreen({ navigation }) {
     if (!authToken) return;
     const { granted } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
     if (granted) {
-      //const token = await registerForPushNotificationsAsync();
-      //expoPushToken.register(token);
+      const token = await registerForPushNotificationsAsync();
+      expoPushToken.register(token);
     }
     navigation.navigate(routes.VALIDATE_EMAIL, {
       authToken,
