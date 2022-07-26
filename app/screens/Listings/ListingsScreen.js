@@ -18,6 +18,7 @@ import cache from "../../utility/cache";
 import settings from "../../config/settings";
 // import Slider from "@react-native-community/slider";
 import FilterListingsModal from "./../../components/FilterListingsModal";
+import Text from "./../../components/Text";
 
 function ListingsScreen({ navigation }) {
   const { colors } = useTheme();
@@ -129,6 +130,7 @@ function ListingsScreen({ navigation }) {
     <>
       <ActivityIndicator visible={loading} />
       <Screen style={[styles.screen, { backgroundColor: colors.light }]}>
+      <Text style={[styles.title, { color: colors.medium }]}>WeekEnd</Text>
         <FilterListingsModal
           visible={modalVisible}
           setVisible={setModalVisible}
@@ -143,6 +145,7 @@ function ListingsScreen({ navigation }) {
               navigation.navigate(routes.MY_CART, { cart });
             }}
           />
+          
 
           <SearchBar search={search} onChange={searchFilter} width="85%" />
           <View style={{ marginLeft: 5 }}>
@@ -152,7 +155,7 @@ function ListingsScreen({ navigation }) {
           </View>
         </View>
 
-        <View style={{ paddingBottom: 10 }}>
+        {/* <View style={{ paddingBottom: 10 }}>
           <FlatList
             data={Object.keys(categoriesMap)}
             keyExtractor={(category) => category}
@@ -163,8 +166,8 @@ function ListingsScreen({ navigation }) {
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
           />
-        </View>
-        <View style={{ padding: 20, paddingBottom: 120 }}>
+        </View> */}
+        <View style={{ padding: 20, paddingBottom: 70 }}>
           {error && (
             <>
               <AppText>Couldn't retrieve the listings.</AppText>
@@ -224,6 +227,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "90%",
     padding: 3,
+  },
+  title: {
+    fontWeight: "bold",
+    fontSize: 21,
+    textAlign: 'center',
   },
 });
 

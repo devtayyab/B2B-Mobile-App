@@ -63,7 +63,6 @@ function ListingDetailsScreen({ route, navigation }) {
         color: colors.secondary,
       },
     });
-    console.log(messageApi.error);
   };
   const onShare = async () => {
     // let redirectUrl = Linking.makeUrl("listings/listingsDetails/", listing);
@@ -102,6 +101,7 @@ function ListingDetailsScreen({ route, navigation }) {
           behavior="position"
           keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100}
         >
+          <ScrollView>
 
           <ImageListScroll
             images={listing.images}
@@ -114,6 +114,7 @@ function ListingDetailsScreen({ route, navigation }) {
 
           <View style={styles.detailsContainer}>
             <Text style={styles.title}>{listing.title}</Text>
+            
             <View style={{ flexDirection: "row" }}>
               <View style={{ flex: 1 }}>
                 <Text style={[styles.price, { color: colors.secondary }]}>
@@ -129,6 +130,11 @@ function ListingDetailsScreen({ route, navigation }) {
                   />
                 </TouchableOpacity>
               </View>
+            </View>
+            <Text>Brand: {listing.brand}</Text>
+            <View style={styles.feature}>
+            <Text>Special for {listing.gender}</Text>
+            <Text> with concentration {listing.concentration}</Text>
             </View>
             <View style={styles.userContainer}>
               <ListItem
@@ -147,6 +153,7 @@ function ListingDetailsScreen({ route, navigation }) {
               />
             </View>
           </View>
+          
           <Form
             initialValues={{ message: "" }}
             onSubmit={sendMessage}
@@ -175,6 +182,7 @@ function ListingDetailsScreen({ route, navigation }) {
               />
             </MapView>
           )}
+          </ScrollView>
         </KeyboardAvoidingView>
       )}
     </>
@@ -196,7 +204,11 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   userContainer: {
-    marginVertical: 40,
+    marginVertical: 5,
+  },
+  feature:{
+    flexDirection:"row",
+
   },
   map: {
     height: 200,

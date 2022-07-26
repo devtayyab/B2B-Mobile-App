@@ -47,25 +47,25 @@ function ListingEditScreen({ route }) {
   const [concentration, setConcentration] = useState("");
 
   const genderValue = [
-    { key: "1", value: "Male" },
-    { key: "2", value: "Female" },
+    { key: "Male", value: "Male" },
+    { key: "Female", value: "Female" },
   ];
   const quantityValue = [
-    { key: "1", value: "0/15ml" },
-    { key: "2", value: "15/30ml" },
-    { key: "3", value: "30/50ml" },
-    { key: "4", value: "50/70ml" },
-    { key: "5", value: "70/100ml" },
-    { key: "6", value: "100/150ml" },
-    { key: "7", value: "150/200ml" },
-    { key: "8", value: "200ml" },
-    { key: "9", value: "Other" },
+    { key: "0/15ml", value: "0/15ml" },
+    { key: "15/30ml", value: "15/30ml" },
+    { key: "30/50ml", value: "30/50ml" },
+    { key: "50/70ml", value: "50/70ml" },
+    { key: "70/100ml", value: "70/100ml" },
+    { key: "100/150ml", value: "100/150ml" },
+    { key: "150/200ml", value: "150/200ml" },
+    { key: "200ml", value: "200ml" },
+    { key: "Other", value: "Other" },
   ];
   const concentrationValue = [
-    { key: "1", value: "eau de cologne" },
-    { key: "2", value: "eau de toilette" },
-    { key: "3", value: "eau de parfume" },
-    { key: "4", value: "Other" },
+    { key: "eau de cologne", value: "eau de cologne" },
+    { key: "eau de toilette", value: "eau de toilette" },
+    { key: "eau de parfume", value: "eau de parfume" },
+    { key: "Other", value: "Other" },
   ];
 
 
