@@ -133,8 +133,7 @@ function ListingDetailsScreen({ route, navigation }) {
             </View>
             <Text>Brand: {listing.brand}</Text>
             <View style={styles.feature}>
-            <Text>Special for {listing.gender}</Text>
-            <Text> with concentration {listing.concentration}</Text>
+            <Text>Special for {listing.gender} with {listing.concentration} Concentration</Text>
             </View>
             <View style={styles.userContainer}>
               <ListItem

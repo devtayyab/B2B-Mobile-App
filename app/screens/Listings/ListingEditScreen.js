@@ -84,7 +84,7 @@ function ListingEditScreen({ route }) {
     const newListing = { ...listing, location: { latitude, longitude } };
     delete newListing.category;
 
-    newListing["userId"] = user._id;
+    newListing["userId"] = user.userId;
     newListing["gender"] = gender;
     newListing["quantity"] = quantity;
     newListing["concentration"] = concentration
