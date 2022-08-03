@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, ScrollView } from "react-native";
 import * as Yup from "yup";
 
 import { useTheme } from "react-native-paper";
-
+import AuthContext from "../../auth/context";
 import {
   Form,
   FormField,
@@ -26,9 +26,8 @@ import SelectList from "react-native-dropdown-select-list";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
-  price: Yup.number().required().min(1).max(10000).label("Price"),
+  price: Yup.number().required().min(1).max(100000).label("Price"),
   description: Yup.string().label("Description"),
-  category: Yup.object().required().nullable().label("Category"),
   images: Yup.array().min(1, "Please select at least one image."),
 });
 
@@ -37,36 +36,38 @@ function ListingEditScreen({ route }) {
   const [uploadVisible, setUploadVisible] = useState(false);
   const [progress, setProgress] = useState(0);
   const getCategoriesApi = useApi(categoriesApi.getCategories);
+  const { user } = useContext(AuthContext);
+
 
   //Drop Down
- 
+
 
   const [gender, setGender] = useState("");
   const [quantity, setQuantity] = useState("");
   const [concentration, setConcentration] = useState("");
 
   const genderValue = [
-    { key: "1", value: "Male" },
-    { key: "2", value: "Female" },
+    { key: "Male", value: "Male" },
+    { key: "Female", value: "Female" },
   ];
   const quantityValue = [
-    { key: "1", value: "0/15ml" },
-    { key: "2", value: "15/30ml" },
-    { key: "3", value: "30/50ml" },
-    { key: "4", value: "50/70ml" },
-    { key: "5", value: "70/100ml" },
-    { key: "6", value: "100/150ml" },
-    { key: "7", value: "150/200ml" },
-    { key: "8", value: "200ml" },
-    { key: "9", value: "Other" },
+    { key: "0/15ml", value: "0/15ml" },
+    { key: "15/30ml", value: "15/30ml" },
+    { key: "30/50ml", value: "30/50ml" },
+    { key: "50/70ml", value: "50/70ml" },
+    { key: "70/100ml", value: "70/100ml" },
+    { key: "100/150ml", value: "100/150ml" },
+    { key: "150/200ml", value: "150/200ml" },
+    { key: "200ml", value: "200ml" },
+    { key: "Other", value: "Other" },
   ];
   const concentrationValue = [
-    { key: "1", value: "eau de cologne" },
-    { key: "2", value: "eau de toilette" },
-    { key: "3", value: "eau de parfume" },
-    { key: "4", value: "Other" },
+    { key: "eau de cologne", value: "eau de cologne" },
+    { key: "eau de toilette", value: "eau de toilette" },
+    { key: "eau de parfume", value: "eau de parfume" },
+    { key: "Other", value: "Other" },
   ];
-  
+
 
 
 
@@ -75,14 +76,19 @@ function ListingEditScreen({ route }) {
   }, []);
 
   const handleSubmit = async (listing, { resetForm }) => {
+
     setProgress(0);
     setUploadVisible(true);
     const { latitude, longitude } = await locationHelper.getLocation();
 
     const newListing = { ...listing, location: { latitude, longitude } };
     delete newListing.category;
-    newListing["categoryId"] = listing.category._id;
 
+    newListing["userId"] = user.userId;
+    newListing["gender"] = gender;
+    newListing["quantity"] = quantity;
+    newListing["concentration"] = concentration
+    console.log(newListing)
     const result = await listingsApi.addListing(newListing, (progress) =>
       setProgress(progress)
     );
@@ -91,7 +97,6 @@ function ListingEditScreen({ route }) {
       setUploadVisible(false);
       return alert("Could not save the listing");
     }
-
     resetForm();
   };
 
@@ -110,89 +115,88 @@ function ListingEditScreen({ route }) {
             brand: listing.brand ? listing.brand : "",
             price: listing.price ? listing.price.toString() : "",
             description: listing.description ? listing.description : "",
-            category: null,
+
             gender: null,
             quantity: null,
-            concentration:null,
+            concentration: null,
             images: [],
           }}
           onSubmit={handleSubmit}
           validationSchema={validationSchema}
         >
           <ScrollView>
-          <FormImagePicker name="images" />
-          <FormField maxLength={255} name="title" placeholder="Title" />
+            <FormImagePicker name="images" />
+            <FormField maxLength={255} name="title" placeholder="Title" />
 
-          <SelectList
-          
-            setSelected={setGender}
-            data={genderValue}
-            placeholder="Choose Gender"
-            search={false}
-            name="gender"
-            boxStyles={{ borderRadius: 20,
-              borderColor: "#f8f4f4",
-              backgroundColor: "#f8f4f4"}}
-              inputStyles = {{color:"#6e6969", fontSize: 16, fontWeight: "800",}}
-          />
+            <SelectList
 
-
-          <FormField maxLength={255} name="brand" placeholder="Brand" />
-
-          <SelectList
-          
-            setSelected={setQuantity}
-            data={quantityValue}
-            placeholder="Quantity"
-            search={false}
-            name="quantity"
-            boxStyles={{ borderRadius: 20,
-              borderColor: "#f8f4f4",
-              backgroundColor: "#f8f4f4", marginTop:10,}}
-              inputStyles = {{color:"#6e6969", fontSize: 16, fontWeight: "800",}}
-          />
+              setSelected={setGender}
+              data={genderValue}
+              placeholder="Choose Gender"
+              search={false}
+              name="gender"
+              boxStyles={{
+                borderRadius: 20,
+                borderColor: "#f8f4f4",
+                backgroundColor: "#f8f4f4"
+              }}
+              inputStyles={{ color: "#6e6969", fontSize: 16, fontWeight: "800", }}
+            />
 
 
-          <SelectList
-          
-          setSelected={setConcentration}
-          data={concentrationValue}
-          placeholder="Concentration"
-          search={false}
-          name="concentration"
-          boxStyles={{ borderRadius: 20,
-            borderColor: "#f8f4f4",
-            backgroundColor: "#f8f4f4", marginTop:20, marginBottom:10,}}
-            inputStyles = {{color:"#6e6969", fontSize: 16, fontWeight: "800",}}
-        />
+            <FormField maxLength={255} name="brand" placeholder="Brand" />
+
+            <SelectList
+
+              setSelected={setQuantity}
+              data={quantityValue}
+              placeholder="Quantity"
+              search={false}
+              name="quantity"
+              boxStyles={{
+                borderRadius: 20,
+                borderColor: "#f8f4f4",
+                backgroundColor: "#f8f4f4", marginTop: 10,
+              }}
+              inputStyles={{ color: "#6e6969", fontSize: 16, fontWeight: "800", }}
+            />
+
+
+            <SelectList
+
+              setSelected={setConcentration}
+              data={concentrationValue}
+              placeholder="Concentration"
+              search={false}
+              name="concentration"
+              boxStyles={{
+                borderRadius: 20,
+                borderColor: "#f8f4f4",
+                backgroundColor: "#f8f4f4", marginTop: 20, marginBottom: 10,
+              }}
+              inputStyles={{ color: "#6e6969", fontSize: 16, fontWeight: "800", }}
+            />
 
 
 
 
 
 
-          <FormField
-            keyboardType="numeric"
-            maxLength={8}
-            name="price"
-            placeholder="Price"
-          />
-          <Picker
-            items={getCategoriesApi.data}
-            name="category"
-            numberOfColumns={3}
-            PickerItemComponent={CategoryPickerItem}
-            placeholder="Category"
-            width="100%"
-          />
-          <FormField
-            maxLength={255}
-            multiline
-            name="description"
-            numberOfLines={3}
-            placeholder="Description"
-          />
-          <SubmitButton title="Post" />
+            <FormField
+              keyboardType="numeric"
+              maxLength={8}
+              name="price"
+              placeholder="Price"
+            />
+
+            <FormField
+              maxLength={255}
+              multiline
+              name="description"
+              numberOfLines={3}
+              placeholder="Description"
+            />
+            <SubmitButton title="Post" />
           </ScrollView>
         </Form>
       </Screen>

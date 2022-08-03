@@ -14,8 +14,8 @@ function ViewCartItem({ item, onMinus, onPlus, priceColor = "blue" }) {
       <Image
         style={styles.image}
         tint="light"
-        preview={{ uri: item.images[0].thumbnailUrl }}
-        uri={item.images[0].url}
+        preview={{ uri: item?.images[0]?.thumbnailUrl }}
+        uri={item?.images[0]?.url}
       />
       <View style={{ flexDirection: "column" }}>
         <Text style={styles.title} numberOfLines={2}>

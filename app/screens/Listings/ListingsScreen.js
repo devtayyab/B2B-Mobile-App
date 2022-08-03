@@ -18,6 +18,7 @@ import cache from "../../utility/cache";
 import settings from "../../config/settings";
 // import Slider from "@react-native-community/slider";
 import FilterListingsModal from "./../../components/FilterListingsModal";
+import Text from "./../../components/Text";
 
 function ListingsScreen({ navigation }) {
   const { colors } = useTheme();
@@ -36,14 +37,14 @@ function ListingsScreen({ navigation }) {
   const setCachedCart = async () => {
     const cachedCart = await cache.get(settings.CartCacheKey, false);
     if (cachedCart) {
-      setCart(cachedCart);
+      // setCart(cachedCart);
       let size = 0;
       for (const [key, value] of Object.entries(cachedCart))
         size += value.quantity;
-      setCartSize(size);
+      // setCartSize(size);
     } else {
-      setCartSize(0);
-      setCart([]);
+      // setCartSize(0);
+      // setCart([]);
     }
   };
   const initListings = async () => {
@@ -129,6 +130,7 @@ function ListingsScreen({ navigation }) {
     <>
       <ActivityIndicator visible={loading} />
       <Screen style={[styles.screen, { backgroundColor: colors.light }]}>
+      <Text style={[styles.title, { color: colors.medium }]}>WeekEnd</Text>
         <FilterListingsModal
           visible={modalVisible}
           setVisible={setModalVisible}
@@ -143,6 +145,7 @@ function ListingsScreen({ navigation }) {
               navigation.navigate(routes.MY_CART, { cart });
             }}
           />
+          
 
           <SearchBar search={search} onChange={searchFilter} width="85%" />
           <View style={{ marginLeft: 5 }}>
@@ -152,7 +155,7 @@ function ListingsScreen({ navigation }) {
           </View>
         </View>
 
-        <View style={{ paddingBottom: 10 }}>
+        {/* <View style={{ paddingBottom: 10 }}>
           <FlatList
             data={Object.keys(categoriesMap)}
             keyExtractor={(category) => category}
@@ -163,8 +166,8 @@ function ListingsScreen({ navigation }) {
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
           />
-        </View>
-        <View style={{ padding: 20, paddingBottom: 120 }}>
+        </View> */}
+        <View style={{ padding: 20, paddingBottom: 70 }}>
           {error && (
             <>
               <AppText>Couldn't retrieve the listings.</AppText>
@@ -181,11 +184,11 @@ function ListingsScreen({ navigation }) {
               <Card
                 title={item.title}
                 subTitle={"$" + item.price}
-                imageUrl={item.images[0].url}
+                imageUrl={item.images[0]?.url}
                 onPress={() =>
                   navigation.navigate(routes.LISTING_DETAILS, item)
                 }
-                thumbnailUrl={item.images[0].thumbnailUrl}
+                thumbnailUrl={item.images[0]?.thumbnailUrl}
                 OnAddToCart={async () => {
                   const key = item._id;
                   if (!cart[key]) cart[key] = { ...item, quantity: 0 };
@@ -224,6 +227,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "90%",
     padding: 3,
+  },
+  title: {
+    fontWeight: "bold",
+    fontSize: 21,
+    textAlign: 'center',
   },
 });
 

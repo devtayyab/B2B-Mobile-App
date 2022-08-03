@@ -21,7 +21,10 @@ import { useTranslation } from "react-i18next";
 import expoPushToken from "../../api/expoPushToken";
 import * as Notifications from "expo-notifications";
 import * as Permissions from "expo-permissions";
-// import { GoogleSignin, GoogleSigninButton } from '@react-native-community/google-signin';
+// import * as Google  from 'expo-google-app-auth';
+
+
+
 
 /*
     .test(
@@ -68,8 +71,8 @@ function RegisterScreen({ navigation }) {
     if (!authToken) return;
     const { granted } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
     if (granted) {
-      //const token = await registerForPushNotificationsAsync();
-      //expoPushToken.register(token);
+      // const token = await registerForPushNotificationsAsync();
+      // expoPushToken.register(token);
     }
     navigation.navigate(routes.VALIDATE_EMAIL, {
       authToken,
@@ -77,10 +80,52 @@ function RegisterScreen({ navigation }) {
     });
   };
 
+ 
+
+
+
+
+
+
+
+  // const handleGoogleSignin = ()=>{
+
+  //   const config = {
+  //     iosClientId:`645156128051-ukohvr4bhqj0a1cp6d63imshbvdfe7ec.apps.googleusercontent.com`,
+  //       androidClientId: `645156128051-cp6u32q9319s8r18n5avq0rb78oc1a21.apps.googleusercontent.com`,
+  //       scopes: ["profile", "email"]
+  //   }
+
+  //   Google.logInAsync(config)
+  //     .then((result)=>{
+  //       const {type, user} = result;
+  //       if (type == 'success') {
+  //         console.log(user);
+          
+  //       } else {
+  //         console.log('Google sign in cancelled!!');
+  //       }
+  //     })
+  //     .catch(err=>console.log(err))
+      
+  //   };
+
+
+ 
+ 
+
+
+
+
+
+
+
+
+
   return (
     <>
       <ActivityIndicator visible={loginApi.loading || registerApi.loading} />
-      <Screen style={styles.container}>
+       <Screen style={styles.container}>
         <Form
           initialValues={{
             name: "",
@@ -125,9 +170,14 @@ function RegisterScreen({ navigation }) {
           />
           <SubmitButton title={t("register")} />
         </Form>
+
         <TouchableOpacity onPress={() => navigation.navigate(routes.LOGIN)}>
           <Text style={styles.login}>{t("login")}</Text>
         </TouchableOpacity>
+        {/* <TouchableOpacity onPress={handleGoogleSignin}>
+          <Text style={styles.login}>{t("Sign In with Google")}</Text>
+        </TouchableOpacity> */}
+        
       </Screen>
     </>
   );

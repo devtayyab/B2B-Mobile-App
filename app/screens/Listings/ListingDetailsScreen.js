@@ -50,6 +50,7 @@ function ListingDetailsScreen({ route, navigation }) {
   }, []);
   const sendMessage = async ({ message }) => {
     Keyboard.dismiss();
+  
     messageApi.request({
       message,
       listingId: listing.id,
@@ -62,7 +63,6 @@ function ListingDetailsScreen({ route, navigation }) {
         color: colors.secondary,
       },
     });
-    console.log(messageApi.error);
   };
   const onShare = async () => {
     // let redirectUrl = Linking.makeUrl("listings/listingsDetails/", listing);
@@ -80,15 +80,12 @@ function ListingDetailsScreen({ route, navigation }) {
     // console.log(fileBase64);
     try {
       await Share.share({
-        message: `${
-          listing.images[0].url
-        } I am sharing with you listing called ${listing.title} in just ${
-          listing.price
-        }$!\n
+        message: `${listing.images[0].url
+          } I am sharing with you listing called ${listing.title} in just ${listing.price
+          }$!\n
         ${listing.description ? listing.description + "\n" : ""}
-        contact the seller ${getSallerApi.data.name} in phone ${
-          getSallerApi.data.phone_number
-        }`,
+        contact the seller ${getSallerApi.data.name} in phone ${getSallerApi.data.phone_number
+          }`,
         title: listing.title,
         url: `data:image/jpg;${fileBase64}`,
       });
@@ -101,10 +98,11 @@ function ListingDetailsScreen({ route, navigation }) {
       <ActivityIndicator visible={messageApi.loading || getSallerApi.loading} />
       {!getSallerApi.loading && (
         <KeyboardAvoidingView
-        behavior="position"
-        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100}
+          behavior="position"
+          keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100}
         >
-          
+          <ScrollView>
+
           <ImageListScroll
             images={listing.images}
             onDoubleTap={(image) =>
@@ -116,6 +114,7 @@ function ListingDetailsScreen({ route, navigation }) {
 
           <View style={styles.detailsContainer}>
             <Text style={styles.title}>{listing.title}</Text>
+            
             <View style={{ flexDirection: "row" }}>
               <View style={{ flex: 1 }}>
                 <Text style={[styles.price, { color: colors.secondary }]}>
@@ -131,6 +130,10 @@ function ListingDetailsScreen({ route, navigation }) {
                   />
                 </TouchableOpacity>
               </View>
+            </View>
+            <Text>Brand: {listing.brand}</Text>
+            <View style={styles.feature}>
+            <Text>Special for {listing.gender} with {listing.concentration} Concentration</Text>
             </View>
             <View style={styles.userContainer}>
               <ListItem
@@ -149,6 +152,7 @@ function ListingDetailsScreen({ route, navigation }) {
               />
             </View>
           </View>
+          
           <Form
             initialValues={{ message: "" }}
             onSubmit={sendMessage}
@@ -156,10 +160,10 @@ function ListingDetailsScreen({ route, navigation }) {
           >
             <FormField placeholder="Message..." name="message" />
             <SubmitButton title="CONTACT SELLER" />
-            <ErrorMessage
+            {/* <ErrorMessage
               error="Error sending the message..."
               visible={messageApi.error}
-            />
+            /> */}
           </Form>
           {listing.location && (
             <MapView
@@ -177,6 +181,7 @@ function ListingDetailsScreen({ route, navigation }) {
               />
             </MapView>
           )}
+          </ScrollView>
         </KeyboardAvoidingView>
       )}
     </>
@@ -198,7 +203,11 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   userContainer: {
-    marginVertical: 40,
+    marginVertical: 5,
+  },
+  feature:{
+    flexDirection:"row",
+
   },
   map: {
     height: 200,
